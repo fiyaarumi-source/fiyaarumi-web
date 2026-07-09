@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aufia Rumi Syahida — Coordinator & Creative Content</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2a211d;
+    --ink-soft:#5a4d46;
+    --maroon:#6e2a3a;
+    --maroon-deep:#3f1622;
+    --gold:#c99a3d;
+    --sage:#6f8f6b;
+    --paper:#f6f1e7;
+    --card:#fffdf8;
+    --line: rgba(42,33,29,0.14);
+    --shadow: 0 12px 30px rgba(63,22,34,0.10);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    margin:0;
+    color:var(--maroon-deep);
+    letter-spacing:-0.01em;
+  }
+  .eyebrow{
+    font-family:'Century Gothic', sans-serif;
+    font-size:0.8rem;
+    text-transform:uppercase;
+    letter-spacing:0.18em;
+    color:var(--sage);
+    font-weight:700;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1040px; margin:0 auto; padding:0 28px;}
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:blur(8px);
+    background:rgba(246,241,231,0.85);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding-top:16px; padding-bottom:16px;}
+  .nav-name{font-family:'Fraunces', serif; font-weight:600; font-size:1.05rem; color:var(--maroon-deep);}
+  .nav-links{display:flex; gap:26px; font-size:0.86rem; font-weight:500;}
+  .nav-links a{text-decoration:none; color:var(--ink-soft); transition:color .2s;}
+  .nav-links a:hover{color:var(--maroon);}
+  .nav-links a:focus-visible, a:focus-visible, button:focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+
+  /* HERO */
+  .hero{position:relative; padding:96px 0 80px; overflow:hidden;}
+  .hero-thread{position:absolute; top:0; right:-40px; height:100%; width:260px; opacity:0.5; pointer-events:none;}
+  .hero-thread path{
+    fill:none; stroke:var(--gold); stroke-width:2;
+    stroke-dasharray:1400; stroke-dashoffset:1400;
+    animation:draw 2.4s ease forwards 0.3s;
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  .hero h1{font-size:clamp(2.6rem, 6vw, 4.4rem); font-weight:700; line-height:1.05; max-width:780px;}
+  .hero h1 em{font-style:italic; color:var(--maroon); font-weight:500;}
+  .hero-sub{margin-top:22px; font-size:1.08rem; color:var(--ink-soft); max-width:560px;}
+  .hero-meta{margin-top:28px; display:flex; flex-wrap:wrap; gap:10px 22px; font-family:'Century Gothic', sans-serif; font-size:0.8rem; color:var(--ink-soft);}
+  .hero-meta span{display:flex; align-items:center; gap:8px;}
+  .dot{width:6px; height:6px; border-radius:50%; background:var(--sage); display:inline-block;}
+  .cta-row{margin-top:36px; display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    font-family:'Inter', sans-serif; font-weight:600; font-size:0.92rem;
+    padding:13px 26px; border-radius:3px; text-decoration:none;
+    display:inline-block; transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .btn-primary{background:var(--maroon); color:var(--card); box-shadow:var(--shadow);}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 16px 34px rgba(63,22,34,0.18);}
+  .btn-ghost{border:1px solid var(--ink); color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--maroon); color:var(--maroon);}
+
+  /* SECTION GENERIC */
+  section{padding:70px 0;}
+  .section-head{margin-bottom:40px; max-width:640px;}
+  .section-head h2{font-size:clamp(1.7rem, 3vw, 2.3rem); font-weight:600; margin-top:8px;}
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:none;}
+
+  /* ABOUT */
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start;}
+  .about-grid p{color:var(--ink-soft); font-size:1.02rem;}
+  .about-stats{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  .stat{border-left:2px solid var(--gold); padding-left:16px;}
+  .stat b{font-family:'Fraunces', serif; font-size:1.7rem; color:var(--maroon-deep); display:block;}
+  .stat span{font-size:0.82rem; color:var(--ink-soft);}
+
+  /* SERVICES */
+  .services-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:22px;}
+  .service-card{
+    background:var(--card); border:1px solid var(--line); border-radius:6px;
+    padding:28px 24px; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .service-card:hover{transform:translateY(-4px); box-shadow:var(--shadow); border-color:var(--gold);}
+  .service-card .num{font-family:'Century Gothic', sans-serif; color:var(--sage); font-size:0.8rem; font-weight:700;}
+  .service-card h3{font-size:1.12rem; margin-top:10px; font-weight:600;}
+  .service-card p{color:var(--ink-soft); font-size:0.92rem; margin-top:10px;}
+
+  /* EXPERIENCE / THREAD TIMELINE */
+  .timeline{position:relative; padding-left:34px;}
+  .timeline::before{
+    content:''; position:absolute; left:6px; top:6px; bottom:6px; width:2px;
+    background:linear-gradient(var(--gold), var(--sage));
+  }
+  .tl-item{position:relative; padding-bottom:44px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:''; position:absolute; left:-34px; top:4px; width:12px; height:12px;
+    border-radius:50%; background:var(--card); border:2px solid var(--maroon);
+  }
+  .tl-date{font-family:'Century Gothic', sans-serif; font-size:0.8rem; color:var(--sage); font-weight:700;}
+  .tl-role{font-size:1.12rem; font-weight:600; color:var(--maroon-deep); margin-top:6px;}
+  .tl-org{font-size:0.88rem; color:var(--ink-soft); font-style:italic;}
+  .tl-item ul{margin:12px 0 0; padding-left:18px; color:var(--ink-soft); font-size:0.94rem;}
+  .tl-item li{margin-bottom:5px;}
+
+  /* SKILLS */
+  .skills-wrap{display:flex; flex-wrap:wrap; gap:12px;}
+  .skill-tag{
+    font-family:'Century Gothic', sans-serif; font-size:0.8rem; padding:9px 16px;
+    border:1px solid var(--line); border-radius:999px; background:var(--card); color:var(--ink);
+  }
+
+  /* EDUCATION */
+  .edu-row{display:flex; justify-content:space-between; align-items:baseline; padding:16px 0; border-bottom:1px solid var(--line);}
+  .edu-row:last-child{border-bottom:none;}
+  .edu-name{font-weight:600; font-family:'Fraunces', serif; font-size:1.05rem;}
+  .edu-year{font-family:'Century Gothic', sans-serif; font-size:0.8rem; color:var(--sage);}
+
+  /* CONTACT */
+  .contact{
+    background:var(--maroon-deep); color:#f2e9df; border-radius:10px;
+    padding:56px 44px; text-align:center; position:relative; overflow:hidden;
+  }
+  .contact h2{color:#f2e9df;}
+  .contact p{color:#d9c7bf; max-width:480px; margin:14px auto 30px;}
+  .contact .btn-primary{background:var(--gold); color:var(--maroon-deep);}
+  .contact .btn-ghost{border-color:#d9c7bf; color:#f2e9df;}
+  .contact-links{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+
+  footer{padding:30px 0; text-align:center; font-family:'Century Gothic', sans-serif; font-size:0.8rem; color:var(--ink-soft);}
+
+  @media (max-width: 800px){
+    .about-grid, .services-grid{grid-template-columns:1fr;}
+    .hero-thread{display:none;}
+    .contact{padding:44px 24px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-name">Aufia Rumi S.</div>
+    <div class="nav-links">
+      <a href="#Profil">Profil</a>
+      <a href="#Cerita Singkat">Cerita Singkat</a>
+      <a href="#layanan">Layanan</a>
+      <a href="#pengalaman">Pengalaman</a>
+      <a href="#kontak">Kontak</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <svg class="hero-thread" viewBox="0 0 260 900" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M40 0 C 140 100, 20 220, 130 340 S 240 500, 90 620 S 20 760, 150 900" />
+  </svg>
+  <section id="Profil">
+  <div class="wrap reveal">
+    <div class="section-head">
+    <p class="eyebrow">Project Coordinator · Social Media Specialist · Creative Content · Fresh Graduate</p>
+    <h1>Menghubungkan <em>ide</em>, orang, dan aksi jadi satu program yang jalan.</h1>
+    <p class="hero-sub">Halo, panggil saya Fiya! Berangkat dari pengalaman saya memimpin teman-teman di OSIS sekolah hingga forum OSIS tingkat Provinsi Jawa Barat, saya terbiasa menggunakan komunikasi efektif dalam membentuk tim yang solid, dan berkolaborasi mengubah ide menjadi konten kreatif yang selalu up-to-date. Sebagai orang yang sangat menyukai storytelling dan self-development, saya berharap karya yang dibuat bisa bermanfaat dan menginspirasi. Sekarang, saya siap membantu lebih banyak orang untuk memaksimalkan proyek yang sedang dijalankan.</p>
+    <div class="hero-meta">
+      <span><span class="dot"></span>Bogor, Indonesia</span>
+      <span><span class="dot"></span>Available for remote work/freelance</span>
+      <span><span class="dot"></span>fiyaarumi@gmail.com</span>
+      <span><span class="dot"></span>(+62) 851-8338-8200</span>
+    </div>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="mailto:fiyaarumi@gmail.com">Ajak Kerja Sama</a>
+      <a class="btn btn-ghost" href="#pengalaman">Lihat Rekam Jejak</a>
+    </div>
+  </div>
+</section>
+
+<section id="Cerita Singkat">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <p class="eyebrow">Cerita Singkat</p>
+      <h2>Dari mengurus 9 sub-departemen menjadi divisi yang lebih ramping.</h2>
+    </div>
+    <div class="about-grid">
+      <p>Selama setahun terakhir, saya menghabiskan waktu di dua dunia yang ternyata saling melengkapi: organisasi sekolah dan produksi konten kreatif. Di OSIS, saya belajar bagaimana merestrukturisasi tim supaya komunikasi antar divisi dapat berjalan lancar. Dalam memproduksi konten kreatif, saya belajar bagaimana ide kampanye bisa diubah menjadi jadwal publikasi yang konsisten. Dua hal ini membentuk cara saya bekerja: rapi di belakang layar, kreatif di depan layar.</p>
+      <div class="about-stats">
+        <div class="stat"><b>20%</b><span>Peningkatan efisiensi komunikasi lintas divisi setelah restrukturisasi</span></div>
+        <div class="stat"><b>6</b><span>Divisi inti hasil penyederhanaan dari 9 sub-departemen</span></div>
+        <div class="stat"><b>3+</b><span>Program & event yang dikoordinasikan langsung</span></div>
+        <div class="stat"><b>#3</b><span>Peringkat lomba riset Ilmu Sosial tingkat sekolah</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="layanan">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <p class="eyebrow">Layanan</p>
+      <h2>Yang bisa saya lakukan untuk anda.</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <p class="num">01</p>
+        <h3>Perencanaan Konten & Media Sosial</h3>
+        <p>Menyusun strategi konten bulanan, jadwal publikasi, dan koordinasi tim desainer/editor supaya engagement tetap konsisten.</p>
+      </div>
+      <div class="service-card">
+        <p class="num">02</p>
+        <h3>Copywriting & Storytelling</h3>
+        <p>Menulis naskah kampanye, caption, dan narasi yang mudah dicerna audiens.</p>
+      </div>
+      <div class="service-card">
+        <p class="num">03</p>
+        <h3>Koordinasi Program & Event</h3>
+        <p>Mengatur logistik, timeline, dan komunikasi antar tim untuk event maupun program jangka pendek.</p>
+      </div>
+      <div class="service-card">
+        <p class="num">04</p>
+        <h3>Desain Presentasi (Canva)</h3>
+        <p>Membuat slide deck, moodboard, dan materi presentasi yang rapi dan mudah dipahami.</p>
+      </div>
+      <div class="service-card">
+        <p class="num">05</p>
+        <h3>Riset & Analisis Sosial Ringan</h3>
+        <p>Mengumpulkan dan merangkum data isu sosial untuk mendukung keputusan konten atau program.</p>
+      </div>
+      <div class="service-card">
+        <p class="num">06</p>
+        <h3>Virtual Assistant</h3>
+        <p>Membantu koordinasi harian, penjadwalan, dan komunikasi tim untuk kebutuhan operasional dari jarak jauh.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pengalaman">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <p class="eyebrow">Pengalaman Organisasi</p>
+      <h2>Rekam jejak kepemimpinan & koordinasi.</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <p class="tl-date">SEP 2024 — AGU 2025</p>
+        <p class="tl-role">Wakil Ketua OSIS</p>
+        <p class="tl-org">SMAS YPHB, Bogor</p>
+        <ul>
+          <li>Merestrukturisasi 9 sub-departemen OSIS menjadi 6 divisi inti, meningkatkan efisiensi komunikasi lintas fungsi sebesar 20%.</li>
+          <li>Menjadi penghubung utama antar divisi untuk program-program OSIS.</li>
+          <li>Memimpin eksekusi beberapa event besar sekolah dan program kaderisasi kepemimpinan.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <p class="tl-date">AGU 2024 — JUL 2025</p>
+        <p class="tl-role">Creative Media Coordinator</p>
+        <p class="tl-org">Social Center FOJB, Bandung</p>
+        <ul>
+          <li>Memimpin strategi konten kreatif bulanan dan kampanye digital untuk program kepemudaan.</li>
+          <li>Mengarahkan konsep konten serta tim desainer, editor, dan talent.</li>
+          <li>Menjaga jadwal publikasi agar engagement akun social media tetap optimal.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <p class="tl-date">JAN — FEB 2025</p>
+        <p class="tl-role">Ketua Tim Riset</p>
+        <p class="tl-org">SMAS YPHB, Bogor</p>
+        <ul>
+          <li>Memimpin tim riset sosial, mengatur pembagian tugas dan timeline proyek.</li>
+          <li>Menganalisis data isu sosial serta menjaga efektivitas kolaborasi tim.</li>
+          <li>Meraih juara 3 lomba riset di rumpun Ilmu Sosial.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <p class="tl-date">FEB 2025</p>
+        <p class="tl-role">Panitia Divisi Kesehatan</p>
+        <p class="tl-org">West Java Student Leader Summit 3.0</p>
+        <ul>
+          <li>Mengelola kesiapan medis dan memberi dukungan kesehatan untuk seluruh peserta.</li>
+          <li>Berkoordinasi dengan panitia lain untuk memastikan keamanan dan protokol acara.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="keahlian">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <p class="eyebrow">Keahlian</p>
+      <h2>Spesialisasi yang dimiliki.</h2>
+    </div>
+    <div class="skills-wrap">
+      <span class="skill-tag">Public Speaking</span>
+      <span class="skill-tag">Leadership & Team Coordination</span>
+      <span class="skill-tag">Content Planning</span>
+      <span class="skill-tag">Social Media Management</span>
+      <span class="skill-tag">Storytelling & Copywriting</span>
+      <span class="skill-tag">Creative Thinking</span>
+      <span class="skill-tag">Canva & Presentation Design</span>
+      <span class="skill-tag">Riset Sosial</span>
+    </div>
+  </div>
+</section>
+
+<section id="pendidikan">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <p class="eyebrow">Pendidikan</p>
+      <h2>Latar belakang akademik.</h2>
+    </div>
+    <div class="edu-row">
+      <span class="edu-name">SMAS YPHB, Bogor</span>
+      <span class="edu-year">2023 — 2026</span>
+    </div>
+    <div class="edu-row">
+      <span class="edu-name">MTs Al-Hamidiyah, Depok</span>
+      <span class="edu-year">2020 — 2023</span>
+    </div>
+  </div>
+</section>
+
+<section id="kontak">
+  <div class="wrap reveal">
+    <div class="contact">
+      <p class="eyebrow" style="color:var(--gold);">Kontak</p>
+      <h2>Silahkan hubungi saya untuk berkolaborasi!</h2>
+      <p>Saya terbuka untuk proyek jarak jauh sebagai virtual assistant di bidang media sosial, konten, dan koordinasi event. Kirimkan brief singkat melalui email, dan akan saya balas secepatnya. Terima kasih!</p>
+      <div class="contact-links">
+        <a class="btn btn-primary" href="mailto:fiyaarumi@gmail.com">fiyaarumi@gmail.com</a>
+        <a class="btn btn-ghost" href="#Profil">Baca profil lengkap</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Aufia Rumi Syahida — Kedung Waringin, Bogor City · Dibuat 2026</div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
