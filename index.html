@@ -60,6 +60,7 @@
   .nav-links a{text-decoration:none; color:var(--ink-soft); transition:color .2s;}
   .nav-links a:hover{color:var(--maroon);}
   .nav-links a:focus-visible, a:focus-visible, button:focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+  <a href="#youtube">Video</a>
 
   /* HERO */
   .hero{position:relative; padding:96px 0 80px; overflow:hidden;}
@@ -93,6 +94,22 @@
   .section-head h2{font-size:clamp(1.7rem, 3vw, 2.3rem); font-weight:600; margin-top:8px;}
   .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease;}
   .reveal.in{opacity:1; transform:none;}
+
+  /* YOUTUBE EMBED */
+.yt{position: relative;
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 16 / 9;
+  margin-top: 18px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #000;
+  box-shadow: var(--shadow);}
+.yt iframe{position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;}
 
   /* ABOUT */
   .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start;}
@@ -207,6 +224,25 @@
     <div class="cta-row">
       <a class="btn btn-primary" href="mailto:fiyaarumi@gmail.com">Ajak Kerja Sama</a>
       <a class="btn btn-ghost" href="#pengalaman">Lihat Rekam Jejak</a>
+    </div>
+  </div>
+</section>
+
+<section id="youtube">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <p class="eyebrow">Video</p>
+      <h2>Perkenalan singkat</h2>
+    </div>
+
+    <div class="yt">
+      <iframe
+        src="https://www.youtube.com/embed/eohNjWMdVT0"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
     </div>
   </div>
 </section>
